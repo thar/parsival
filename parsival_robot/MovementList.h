@@ -3,8 +3,8 @@
 
 #include "JointController.h"
 #include "RelaxPoseMovement.h"
-#include "MovementTurnRight.h"
-#include "MovementTurnLeft.h"
+#include "movements/MovementTurnRight.h"
+#include "movements/MovementTurnLeft.h"
 
 class MovementList {
 public:
