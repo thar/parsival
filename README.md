@@ -156,4 +156,7 @@ To test the movements:
 * Send the command string (01x or any other of an available movement)
 
 
+> **Note:**
+
+> - Many movements can be obtained from the repo: https://github.com/ozfiddler/sc-robonova-archive
 
