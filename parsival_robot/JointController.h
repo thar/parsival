@@ -237,35 +237,35 @@ public:
         maestroJoints_[static_cast<int>(MaestroJoints::TOBILLO_DCHO_ROT)] =
                 Joint(maestro_, MaestroJoints::TOBILLO_DCHO_ROT, RobonovaJoints::TOBILLO_DCHO_ROT);
         maestroJoints_[static_cast<int>(MaestroJoints::TOBILLO_DCHO_FRONTAL)] =
-                Joint(maestro_, MaestroJoints::TOBILLO_DCHO_FRONTAL, RobonovaJoints::TOBILLO_DCHO_FRONTAL);
+                Joint(maestro_, MaestroJoints::TOBILLO_DCHO_FRONTAL, RobonovaJoints::TOBILLO_DCHO_FRONTAL, true);
         maestroJoints_[static_cast<int>(MaestroJoints::RODILLA_DCHA)] =
-                Joint(maestro_, MaestroJoints::RODILLA_DCHA, RobonovaJoints::RODILLA_DCHA);
+                Joint(maestro_, MaestroJoints::RODILLA_DCHA, RobonovaJoints::RODILLA_DCHA, true);
         maestroJoints_[static_cast<int>(MaestroJoints::CADERA_DCHA_FRONTAL)] =
                 Joint(maestro_, MaestroJoints::CADERA_DCHA_FRONTAL, RobonovaJoints::CADERA_DCHA_FRONTAL);
         maestroJoints_[static_cast<int>(MaestroJoints::CADERA_DCHA_LATERAL)] =
-                Joint(maestro_, MaestroJoints::CADERA_DCHA_LATERAL, RobonovaJoints::CADERA_DCHA_LATERAL);
+                Joint(maestro_, MaestroJoints::CADERA_DCHA_LATERAL, RobonovaJoints::CADERA_DCHA_LATERAL, true);
         maestroJoints_[static_cast<int>(MaestroJoints::CODO_DCHO)] =
                 Joint(maestro_, MaestroJoints::CODO_DCHO, RobonovaJoints::CODO_DCHO);
         maestroJoints_[static_cast<int>(MaestroJoints::CODO_IZQD)] =
-                Joint(maestro_, MaestroJoints::CODO_IZQD, RobonovaJoints::CODO_IZQD);
+                Joint(maestro_, MaestroJoints::CODO_IZQD, RobonovaJoints::CODO_IZQD, true);
         maestroJoints_[static_cast<int>(MaestroJoints::CADERA_IZQD_LATERAL)] =
                 Joint(maestro_, MaestroJoints::CADERA_IZQD_LATERAL, RobonovaJoints::CADERA_IZQD_LATERAL);
         maestroJoints_[static_cast<int>(MaestroJoints::CADERA_IZQD_FRONTAL)] =
-                Joint(maestro_, MaestroJoints::CADERA_IZQD_FRONTAL, RobonovaJoints::CADERA_IZQD_FRONTAL);
+                Joint(maestro_, MaestroJoints::CADERA_IZQD_FRONTAL, RobonovaJoints::CADERA_IZQD_FRONTAL, true);
         maestroJoints_[static_cast<int>(MaestroJoints::RODILLA_IZQD)] =
                 Joint(maestro_, MaestroJoints::RODILLA_IZQD, RobonovaJoints::RODILLA_IZQD);
         maestroJoints_[static_cast<int>(MaestroJoints::TOBILLO_IZQD_FRONTAL)] =
                 Joint(maestro_, MaestroJoints::TOBILLO_IZQD_FRONTAL, RobonovaJoints::TOBILLO_IZQD_FRONTAL);
         maestroJoints_[static_cast<int>(MaestroJoints::TOBILLO_IZQD_ROT)] =
-                Joint(maestro_, MaestroJoints::TOBILLO_IZQD_ROT, RobonovaJoints::TOBILLO_IZQD_ROT);
+                Joint(maestro_, MaestroJoints::TOBILLO_IZQD_ROT, RobonovaJoints::TOBILLO_IZQD_ROT, true);
         maestroJoints_[static_cast<int>(MaestroJoints::HOMBRO_DCHO_EXTEN)] =
                 Joint(maestro_, MaestroJoints::HOMBRO_DCHO_EXTEN, RobonovaJoints::HOMBRO_DCHO_EXTEN);
         maestroJoints_[static_cast<int>(MaestroJoints::HOMBRO_DCHO_ROTA)] =
                 Joint(maestro_, MaestroJoints::HOMBRO_DCHO_ROTA, RobonovaJoints::HOMBRO_DCHO_ROTA);
         maestroJoints_[static_cast<int>(MaestroJoints::HOMBRO_IZQD_EXTEN)] =
-                Joint(maestro_, MaestroJoints::HOMBRO_IZQD_EXTEN, RobonovaJoints::HOMBRO_IZQD_EXTEN);
+                Joint(maestro_, MaestroJoints::HOMBRO_IZQD_EXTEN, RobonovaJoints::HOMBRO_IZQD_EXTEN, true);
         maestroJoints_[static_cast<int>(MaestroJoints::HOMBRO_IZQD_ROTA)] =
-                Joint(maestro_, MaestroJoints::HOMBRO_IZQD_ROTA, RobonovaJoints::HOMBRO_IZQD_ROTA);
+                Joint(maestro_, MaestroJoints::HOMBRO_IZQD_ROTA, RobonovaJoints::HOMBRO_IZQD_ROTA, true);
 
         for (auto& joint : maestroJoints_) {
             auto robonovaId = joint.getRobonovaId();
