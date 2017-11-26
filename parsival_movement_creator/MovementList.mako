@@ -1,7 +1,7 @@
 #ifndef MovementList_h
 #define MovementList_h
 
-#include "JointController.h"
+#include "JointControllerInterface.h"
 #include "RelaxPoseMovement.h"
 
 <%!
@@ -14,7 +14,7 @@
 
 class MovementList {
 public:
-    MovementList(JointController& jc)
+    MovementList(JointControllerInterface& jc)
     : relaxPoseMovement(jc)
 % for movement in movements:
       , ${lower_first_char(movement)}(jc)

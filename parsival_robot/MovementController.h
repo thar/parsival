@@ -1,9 +1,7 @@
 #ifndef MovementController_h
 #define MovementController_h
 
-#ifdef PC_VERSION
 #include "Arduino.h"
-#endif
 #include "Movement.h"
 #include "Pose.h"
 
@@ -26,9 +24,9 @@ public:
     void doStep() {
         //Serial.println("MovementController.doStep()");
         if (actualPose_) {
-            //Serial.println("update pose");
+            Serial.println("update pose");
             actualPose_->update();
-            //Serial.println("get next pose");
+            Serial.println("get next pose");
             actualPose_ = actualPose_->getNextPose();
             //Serial.print("Pose:");
             //Serial.println(actualPose_);

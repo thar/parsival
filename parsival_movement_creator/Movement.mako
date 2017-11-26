@@ -5,7 +5,7 @@
 #include "TimedPose.h"
 #include "DirectPose.h"
 #include "StaticTimePose.h"
-#include "JointController.h"
+#include "JointControllerInterface.h"
 
 <%!
     def create_pose_initialization(pose, position):
@@ -19,7 +19,7 @@
 
 class ${movement["name"]} : public Movement {
 public:
-    ${movement["name"]}(JointController& jc) :
+    ${movement["name"]}(JointControllerInterface& jc) :
         % for i in range(len(movement["poses"])):
             ${create_pose_initialization(movement["poses"][i], i)}
             % if i != (len(movement["poses"])-1):
@@ -40,7 +40,7 @@ protected:
 private:
 % for i in range(len(movement["poses"])):
     % if movement["poses"][i]["type"] != 'StaticTimePose':
-    ${movement["poses"][i]["type"]}<RobonovaJoints> pose${i};
+    ${movement["poses"][i]["type"]} pose${i};
     % else:
     ${movement["poses"][i]["type"]} pose${i};
     % endif

@@ -1,9 +1,7 @@
 #ifndef StaticTimePose_h
 #define StaticTimePose_h
 
-#ifdef PC_VERSION
 #include "Arduino.h"
-#endif
 #include "Pose.h"
 
 class StaticTimePose : public Pose {

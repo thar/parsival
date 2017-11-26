@@ -1,15 +1,15 @@
 #ifndef MovementTurnRight_h
 #define MovementTurnRight_h
 
-#include "Movement.h"
-#include "TimedPose.h"
-#include "DirectPose.h"
-#include "StaticTimePose.h"
-#include "JointController.h"
+#include "../Movement.h"
+#include "../TimedPose.h"
+#include "../DirectPose.h"
+#include "../StaticTimePose.h"
+#include "../JointControllerInterface.h"
 
 class MovementTurnRight : public Movement {
 public:
-    MovementTurnRight(JointController& jc) :
+    MovementTurnRight(JointControllerInterface& jc) :
             pose1(jc, poseAngles1, 100),
             pose2(jc, poseAngles2, 100),
             pose3(jc, poseAngles3, 100),
@@ -27,10 +27,10 @@ public:
 
 protected:
 private:
-    TimedPose<RobonovaJoints> pose1;
-    TimedPose<RobonovaJoints> pose2;
-    TimedPose<RobonovaJoints> pose3;
-    DirectPose<RobonovaJoints> pose4;
+    TimedPose pose1;
+    TimedPose pose2;
+    TimedPose pose3;
+    DirectPose pose4;
     StaticTimePose pose5;
 
     static const int poseAngles1[];

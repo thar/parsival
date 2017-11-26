@@ -1,11 +1,11 @@
-#define PC_VERSION
-
 #include "Arduino.h"
 #include "Parsival.h"
 
 int main()
 {
-    Parsival parsival(Serial, Serial);
+    JointController jointController(Serial);
+    MovementList movementList(jointController);
+    Parsival parsival(Serial, movementList);
     parsival.init();
 
     while (!Serial.exit()) {

@@ -7,20 +7,13 @@
 
 #include "HardwareSerial.h"
 #include <chrono>
+#include <cmath>
+#define PI 3.1415
 
-HardwareSerial Serial;
+extern HardwareSerial Serial;
+//extern HardwareSerial Serial2;
 
-auto initTime = std::chrono::system_clock::now();
-
-unsigned long millis() {
-    std::chrono::milliseconds ms =
-            std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - initTime);
-    return static_cast<unsigned long>(ms.count());
-}
-
-class Arduino {
-
-};
+unsigned long millis();
 
 
 #endif //PARSIVAL_ARDUINO_H

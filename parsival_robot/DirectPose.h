@@ -2,14 +2,15 @@
 #define DirectPose_h
 
 #include "Pose.h"
-#include "JointController.h"
+#include "JointControllerInterface.h"
 
-template <typename AngleType>
+
 class DirectPose : public Pose {
 public:
-    DirectPose(JointController& jc, const int *jointsAngles) : jc_(jc), jointsAngles_(jointsAngles) {}
+    DirectPose(JointControllerInterface& jc, const int *jointsAngles) : jc_(jc), jointsAngles_(jointsAngles) {}
     
     void update() {
+        jc_.refresh();
     }
     
     Pose * getNextPose() {
@@ -17,12 +18,12 @@ public:
     }
     
     void init() {
-        jc_.setPose<AngleType>(jointsAngles_, -1);
+        jc_.setJointAngles(jointsAngles_, -1);
     }
     
 protected:
 private:
-    JointController& jc_;
+    JointControllerInterface& jc_;
     const int *jointsAngles_;
 };
 

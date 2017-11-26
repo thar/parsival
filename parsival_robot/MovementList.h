@@ -1,14 +1,14 @@
 #ifndef MovementList_h
 #define MovementList_h
 
-#include "JointController.h"
+#include "JointControllerInterface.h"
 #include "RelaxPoseMovement.h"
 #include "movements/MovementTurnRight.h"
 #include "movements/MovementTurnLeft.h"
 
 class MovementList {
 public:
-    MovementList(JointController& jc)
+    MovementList(JointControllerInterface& jc)
     : relaxPoseMovement(jc), movementTurnRight(jc), movementTurnLeft(jc) {
         movementsList[0] = &movementTurnRight;
         movementsList[1] = &movementTurnLeft;

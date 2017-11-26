@@ -2,12 +2,12 @@
 #define TimedPose_h
 
 #include "Pose.h"
-#include "JointController.h"
+#include "JointControllerInterface.h"
 
-template <typename AngleType>
+
 class TimedPose : public Pose {
 public:
-    TimedPose(JointController& jc, const int *jointsAngles, int time) : jc_(jc), jointsAngles_(jointsAngles),
+    TimedPose(JointControllerInterface& jc, const int *jointsAngles, int time) : jc_(jc), jointsAngles_(jointsAngles),
                                                                         time_(time) {}
     
     void update() {
@@ -23,12 +23,12 @@ public:
     }
     
     void init() {
-        jc_.setPose<AngleType>(jointsAngles_, time_);
+        jc_.setJointAngles(jointsAngles_, time_);
     }
     
 protected:
 private:
-    JointController& jc_;
+    JointControllerInterface& jc_;
     const int *jointsAngles_;
     int time_;
 

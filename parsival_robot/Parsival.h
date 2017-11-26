@@ -4,16 +4,12 @@
 #include "JointController.h"
 #include "MovementController.h"
 #include "MovementList.h"
-#ifdef PC_VERSION
-#include <cstring>
-#include "Stream.h"
-#include "HardwareSerial.h"
-#endif
+#include <Arduino.h>
 
 class Parsival {
 public:
-    Parsival(Stream& commSerial, HardwareSerial& debugSerial)
-        : debugSerial(debugSerial), jointController(commSerial), movementList(jointController),
+    Parsival(Stream& debugSerial, MovementList& movementList)
+        : debugSerial(debugSerial), movementList(movementList),
           rxBuffer{0} {
     }
     
@@ -25,14 +21,14 @@ public:
         while (movementController.isRunning())
             movementController.doStep();
     }
-    
+
     void loop() {
         processSerial();
         movementController.doStep();
     }
-    
+
     void init() {
-        debugSerial.begin(115200);
+        Serial.println("inicio de centrado");
         center();
         debugSerial.println("center finished");
     }
@@ -47,14 +43,12 @@ protected:
             }
         }
     }
-    
+
     void processSerial() {
         while (debugSerial.available()) {
             char incommingByte = debugSerial.read();
-#ifndef PC_VERSION
             debugSerial.print("Leido: ");
             debugSerial.println(incommingByte);
-#endif
             if (bufferIndex < movementList.size() && incommingByte != END_OF_LINE) {
                 rxBuffer[bufferIndex] = incommingByte;
                 ++bufferIndex;
@@ -72,8 +66,7 @@ protected:
 private:
     static const char END_OF_LINE = 'x';
     unsigned int bufferIndex = 0;
-    HardwareSerial& debugSerial;
-    JointController jointController;
+    Stream& debugSerial;
     MovementController movementController;
     MovementList movementList;
     char rxBuffer[MovementList::size()];

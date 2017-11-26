@@ -3,11 +3,11 @@
 
 #include "Movement.h"
 #include "DirectPose.h"
-#include "JointController.h"
+#include "JointControllerInterface.h"
 
 class RelaxPoseMovement : public Movement {
 public:
-    RelaxPoseMovement(JointController& jc) : relaxPose(jc, pose) {}
+    RelaxPoseMovement(JointControllerInterface& jc) : relaxPose(jc, pose) {}
 
     Pose * getInitialPose() {
         return &relaxPose;
@@ -16,7 +16,7 @@ public:
 protected:
 private:
     static const int pose[];
-    DirectPose<RobonovaJoints> relaxPose;
+    DirectPose relaxPose;
     
 };
 

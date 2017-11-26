@@ -40,6 +40,13 @@ unsigned long timer = 0;
 
 void loop()
 {
+  if (Serial.available()) {
+    Serial1.write(Serial.read());
+  }
+  if (Serial1.available()) {
+    Serial.write(Serial1.read());
+  }
+  /*
   if(millis() - timer > 500){  // manage the updating freq of all the controlling information
     DataUpdate();  //read the buttons and the joysticks data
     printData();   //print the datas and states
@@ -66,6 +73,7 @@ void loop()
         break;
     }
   }
+  */
 }
 
 void DataUpdate(){

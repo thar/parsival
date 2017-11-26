@@ -1,13 +1,13 @@
 #ifndef MovementTurnLeft_h
 #define MovementTurnLeft_h
 
-#include "Movement.h"
-#include "TimedPose.h"
-#include "JointController.h"
+#include "../Movement.h"
+#include "../TimedPose.h"
+#include "../JointControllerInterface.h"
 
 class MovementTurnLeft : public Movement {
 public:
-    MovementTurnLeft(JointController& jc) :
+    MovementTurnLeft(JointControllerInterface& jc) :
             pose1(jc, poseAngles1, 100),
             pose2(jc, poseAngles2, 100),
             pose3(jc, poseAngles3, 100),
@@ -23,10 +23,10 @@ public:
     
 protected:
 private:
-    TimedPose<RobonovaJoints> pose1;
-    TimedPose<RobonovaJoints> pose2;
-    TimedPose<RobonovaJoints> pose3;
-    TimedPose<RobonovaJoints> pose4;
+    TimedPose pose1;
+    TimedPose pose2;
+    TimedPose pose3;
+    TimedPose pose4;
 
     static const int poseAngles1[];
     static const int poseAngles2[];
