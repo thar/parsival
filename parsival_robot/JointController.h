@@ -105,22 +105,22 @@ private:
     int validIndexes_[16];
 
     enum MaestroJoints {
-        TOBILLO_DCHO_ROT = 0,
-        TOBILLO_DCHO_FRONTAL = 1,
-        RODILLA_DCHA = 2,
-        CADERA_DCHA_FRONTAL = 3,
-        CADERA_DCHA_LATERAL = 4,
-        CODO_DCHO = 5,
-        CODO_IZQD = 6,
-        CADERA_IZQD_LATERAL = 7,
-        CADERA_IZQD_FRONTAL = 8,
-        RODILLA_IZQD = 9,
-        TOBILLO_IZQD_FRONTAL = 10,
-        TOBILLO_IZQD_ROT = 11,
-        HOMBRO_DCHO_EXTEN = 13,
-        HOMBRO_DCHO_ROTA = 14,
-        HOMBRO_IZQD_EXTEN = 12,
-        HOMBRO_IZQD_ROTA = 15
+        CODO_DCHO = 0,
+        HOMBRO_DCHO_EXTEN = 1,
+        TOBILLO_DCHO_ROT = 2,
+        TOBILLO_DCHO_FRONTAL = 3,
+        RODILLA_DCHA = 4,
+        CADERA_DCHA_FRONTAL = 5,
+        HOMBRO_DCHO_ROTA = 6,
+        CADERA_DCHA_LATERAL = 7,
+        CADERA_IZQD_LATERAL = 8,
+        HOMBRO_IZQD_ROTA = 9,
+        CADERA_IZQD_FRONTAL = 12,
+        RODILLA_IZQD = 13,
+        TOBILLO_IZQD_FRONTAL = 14,
+        TOBILLO_IZQD_ROT = 15,
+        HOMBRO_IZQD_EXTEN = 16,
+        CODO_IZQD = 17
     };
 };
 
