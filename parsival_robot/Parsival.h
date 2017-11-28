@@ -6,11 +6,11 @@
 #include "MovementList.h"
 #include <Arduino.h>
 
+
 class Parsival {
 public:
     Parsival(Stream& debugSerial, MovementList& movementList)
-        : debugSerial(debugSerial), movementList(movementList),
-          rxBuffer{0} {
+        : debugSerial(debugSerial), movementList(movementList) {
     }
     
     ~Parsival() {
@@ -28,48 +28,31 @@ public:
     }
 
     void init() {
-        Serial.println("inicio de centrado");
         center();
-        debugSerial.println("center finished");
     }
     
 protected:
-    void processRxBuffer() {
-        for (unsigned int i=0; i < movementList.size(); ++i) {
-            if (rxBuffer[i] == '1') {
-                debugSerial.print("adding movement ");
-                debugSerial.println(i);
-                movementController.addMovement(movementList[i]);
-            }
-        }
-    }
-
     void processSerial() {
         while (debugSerial.available()) {
-            char incommingByte = debugSerial.read();
+            uint8_t incommingByte = static_cast<uint8_t>(debugSerial.read());
+#ifdef DEBUG
             debugSerial.print("Leido: ");
             debugSerial.println(incommingByte);
-            if (bufferIndex < movementList.size() && incommingByte != END_OF_LINE) {
-                rxBuffer[bufferIndex] = incommingByte;
-                ++bufferIndex;
-            }
-            else if (incommingByte == END_OF_LINE) {
-                bufferIndex = 0;
-                processRxBuffer();
-                memset(rxBuffer, 0, movementList.size());
-            } else {
-                memset(rxBuffer, 0, movementList.size());
+#endif
+            if (incommingByte < movementList.size()) {
+#ifdef DEBUG
+                debugSerial.print("adding movement ");
+                debugSerial.println(incommingByte);
+#endif
+                movementController.addMovement(movementList[incommingByte]);
             }
         }
     }
     
 private:
-    static const char END_OF_LINE = 'x';
-    unsigned int bufferIndex = 0;
     Stream& debugSerial;
     MovementController movementController;
     MovementList movementList;
-    char rxBuffer[MovementList::size()];
     
 };
 

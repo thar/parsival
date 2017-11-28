@@ -22,8 +22,10 @@ public:
     
     void init() {
         timeFlagObjective = millis() + waitTime;
+#ifdef DEBUG
         Serial.print("init wait for ");
         Serial.println(timeFlagObjective);
+#endif
     }
     
 protected:

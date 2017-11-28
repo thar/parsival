@@ -45,8 +45,8 @@ public:
                                 HOMBRO_DCHO_ROTA, HOMBRO_DCHO_EXTEN, CODO_DCHO, -1, -1, -1,
                                 TOBILLO_DCHO_ROT, TOBILLO_DCHO_FRONTAL, RODILLA_DCHA, CADERA_DCHA_FRONTAL,
                                 CADERA_DCHA_LATERAL, -1},
-          reversedJoint_{true, false, false, true, false, false, false, false, true, false, false, false,
-                         true, true, false, false, false, false, false, true, true, false, true, false},
+          reversedJoint_{false, true, true, false, true, false, false, false, false, false, false, false,
+                         true, true, true, false, false, false, true, false, false, true, false, false},
           actualJointsPosition_{0},
           validIndexes_{0, 1, 2, 3, 4, 6, 7, 8, 12, 13, 14, 18, 19, 20, 21, 22}
     {

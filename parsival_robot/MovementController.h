@@ -24,15 +24,19 @@ public:
     void doStep() {
         //Serial.println("MovementController.doStep()");
         if (actualPose_) {
+#ifdef DEBUG
             Serial.println("update pose");
+#endif
             actualPose_->update();
+#ifdef DEBUG
             Serial.println("get next pose");
+#endif
             actualPose_ = actualPose_->getNextPose();
-            //Serial.print("Pose:");
-            //Serial.println(actualPose_);
+#ifdef DEBUG
             if (!actualPose_) {
                 Serial.println("movement end");
             }
+#endif
         }
     }
 
