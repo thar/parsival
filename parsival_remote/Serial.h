@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <iostream>
+#include <cstring>
 
 class Serial {
 public:
@@ -18,52 +19,49 @@ public:
         fd = open(serial_port, O_RDWR | O_NOCTTY | O_SYNC | O_NONBLOCK);
         std::cout << "opened" << std::endl;
         if (fd < 0) {
-            std::cout << "error " << errno << " opening " << serial_port << ": " << strerror(errno) << std::endl;
+            std::cerr << "error " << errno << " opening " << serial_port << ": " << strerror(errno) << std::endl;
             error = true;
             return;
         }
 
-        std::cout << "set speed" << std::endl;
         set_interface_attribs(fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-        std::cout << "set blocking" << std::endl;
-        set_blocking(fd, 0);                // set no blocking
-        std::cout << "end" << std::endl;
+        set_blocking(fd, 0);
 
     }
 
     void writeString(const std::string& s) {
         write(fd, s.c_str(), s.size());
-
-        usleep((7 + 25) * 10000);             // sleep enough to transmit the 7 plus
-        // receive 25:  approx 100 uS per char transmit
-        char buf[100];
-        int n = read(fd, buf, sizeof buf);  // read up to 100 characters if ready to read
-        std::cout << "leido: " << buf << std::endl;
     }
 
-    void writeString(uint8_t b) {
-        write(fd, &b, 1);
+    std::string readString(int maxNumberOfCharsToRead = 100) {
+        char buf[maxNumberOfCharsToRead];
+        ssize_t n = read(fd, buf, maxNumberOfCharsToRead);
+        if (n) {
+            return std::string(buf, n);
+        } else {
+            return "";
+        }
 
-        usleep((7 + 25) * 10000);             // sleep enough to transmit the 7 plus
-        // receive 25:  approx 100 uS per char transmit
-        char buf[100];
-        int n = read(fd, buf, sizeof buf);  // read up to 100 characters if ready to read
-        std::cout << "leido: " << std::to_string(buf[0]) << std::endl;
+    }
+
+    bool readByte(uint8_t byte) {
+        return 1 == read(fd, &byte, 1);
+    }
+
+    void writeByte(uint8_t b) {
+        write(fd, &b, 1);
     }
 
     bool error = false;
 
 protected:
 
-    int
-    set_interface_attribs (int fd, int speed, int parity)
-    {
+    int set_interface_attribs (int fd, int speed, int parity) {
         struct termios tty;
         memset (&tty, 0, sizeof tty);
-        if (tcgetattr (fd, &tty) != 0)
-        {
+        if (tcgetattr (fd, &tty) != 0) {
             error = true;
-            std::cout << "error " << errno << " from tcgetattr" << std::endl;
+            std::cerr << "error " << errno << " from tcgetattr" << std::endl;
             return -1;
         }
 
@@ -89,23 +87,20 @@ protected:
         tty.c_cflag &= ~CSTOPB;
         tty.c_cflag &= ~CRTSCTS;
 
-        if (tcsetattr (fd, TCSANOW, &tty) != 0)
-        {
-            std::cout << "error " << errno << " from tcsetattr" << std::endl;
+        if (tcsetattr (fd, TCSANOW, &tty) != 0) {
+            std::cerr << "error " << errno << " from tcsetattr" << std::endl;
             error = true;
             return -1;
+        } else {
+            return 0;
         }
-        return 0;
     }
 
-    void
-    set_blocking (int fd, int should_block)
-    {
+    void set_blocking (int fd, int should_block) {
         struct termios tty;
         memset (&tty, 0, sizeof tty);
-        if (tcgetattr (fd, &tty) != 0)
-        {
-            std::cout << "error " << errno << " from tcgetattr" << std::endl;
+        if (tcgetattr (fd, &tty) != 0) {
+            std::cerr << "error " << errno << " from tcgetattr" << std::endl;
             error = true;
             return;
         }
@@ -114,7 +109,7 @@ protected:
         tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
 
         if (tcsetattr (fd, TCSANOW, &tty) != 0) {
-            std::cout << "error " << errno << " setting term attributes" << std::endl;
+            std::cerr << "error " << errno << " setting term attributes" << std::endl;
             error = true;
         }
     }

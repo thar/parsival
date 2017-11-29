@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 find_package (Threads)
 
+add_subdirectory(parsival_remote)
+
 include_directories(${CMAKE_SOURCE_DIR}/parsival_robot)
 include_directories(${CMAKE_SOURCE_DIR}/parsival_robot_pc_debug)
 add_definitions(-DPC_VERSION)
