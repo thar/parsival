@@ -140,23 +140,20 @@ Call the generation of the movements:
 python parsival_movement_creator/movement_code_creator.py
 And the new movements code should be created in their correct places. Upload to Parsival and test them.
 
+> **Note:**
+
+> - Many movements can be obtained from the repo: https://github.com/ozfiddler/sc-robonova-archive
+
+
 Launch a movement in Parsival
 -------------------
-Parsival accepts strings in the form of '0' and a '1' in the position of the index of the movement that will be executed. The string must be terminated with an 'x'
-The number of '0's and '1' must be equal to the number of movements available in Parsival.
-This way, if we only have 2 movements, the accepted strings are:
-
-* 10x -> executes the first movement
-* 01x -> executed the second movement
+Parsival accepts a byte indicating the movement number. The movement number must be lower than the number of movements available in parsival. This way, if we only have 2 movements, the accepted movement numbers are 0 and 1:
 
 To test the movements:
 
 * Upload the code to parsival
-* Open the serial interface
-* Send the command string (01x or any other of an available movement)
+* Open a serial terminal that accepts sending raw data
+* Send the byte 0 or the byte 1
 
 
-> **Note:**
-
-> - Many movements can be obtained from the repo: https://github.com/ozfiddler/sc-robonova-archive
 
