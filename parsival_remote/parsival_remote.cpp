@@ -17,34 +17,44 @@ void handle_event(struct wiimote_t* wm) {
     if (IS_PRESSED(wm, WIIMOTE_BUTTON_A)) {
         std::cout << "A pressed" << std::endl;
         serial->writeByte(commandNumber["A"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_B)) {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_B)) {
         std::cout << "B pressed" << std::endl;
         serial->writeByte(commandNumber["B"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_UP)) {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_UP)) {
         std::cout << "UP pressed" << std::endl;
         serial->writeByte(commandNumber["U"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_DOWN))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_DOWN))    {
         std::cout << "DOWN pressed" << std::endl;
         serial->writeByte(commandNumber["D"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_LEFT))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_LEFT))    {
         std::cout << "LEFT pressed" << std::endl;
         serial->writeByte(commandNumber["L"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_RIGHT))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_RIGHT))    {
         std::cout << "RIGHT pressed" << std::endl;
         serial->writeByte(commandNumber["R"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_MINUS))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_MINUS))    {
         std::cout << "MINUS pressed" << std::endl;
         serial->writeByte(commandNumber["-"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_PLUS))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_PLUS))    {
         std::cout << "PLUS pressed" << std::endl;
         serial->writeByte(commandNumber["+"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_ONE)) {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_ONE)) {
         std::cout << "ONE pressed" << std::endl;
         serial->writeByte(commandNumber["1"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_TWO)) {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_TWO)) {
         std::cout << "TWO pressed" << std::endl;
         serial->writeByte(commandNumber["2"]);
-    } if (IS_PRESSED(wm, WIIMOTE_BUTTON_HOME))    {
+    }
+    if (IS_PRESSED(wm, WIIMOTE_BUTTON_HOME))    {
         std::cout << "HOME pressed" << std::endl;
         serial->writeByte(commandNumber["H"]);
     }
@@ -73,7 +83,8 @@ void handle_event(struct wiimote_t* wm) {
         } else if (rightTurn) {
             std::cout << "Nunchuk: Right pressed" << std::endl;
             serial->writeByte(commandNumber["NR"]);
-        } if (nunchukUp) {
+        }
+        if (nunchukUp) {
             std::cout << "Nunchuk: Up pressed" << std::endl;
             serial->writeByte(commandNumber["NU"]);
         } else if (nunchukDown) {
